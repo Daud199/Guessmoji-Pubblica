@@ -2,7 +2,7 @@
 //  GuessmojiApp.swift
 //  Guessmoji
 //
-//  Created by Alice Roncella on 29/12/20.
+//  Created by Alice Roncella on 13/03/21.
 //
 
 import SwiftUI

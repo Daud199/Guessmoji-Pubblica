@@ -7,150 +7,102 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A7CF149541561D24FA6983B8 /* Pods_Guessmoji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E50283C1B0A7B4E2FEF88985 /* Pods_Guessmoji.framework */; };
-		E25670BB259B981800B39AA3 /* GuessmojiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25670BA259B981800B39AA3 /* GuessmojiApp.swift */; };
-		E25670BF259B981900B39AA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25670BE259B981900B39AA3 /* Assets.xcassets */; };
-		E25670C2259B981900B39AA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25670C1259B981900B39AA3 /* Preview Assets.xcassets */; };
-		E2BA9615259BAD2E0053C8A7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA9614259BAD2E0053C8A7 /* Home.swift */; };
-		E2BA9627259BBC240053C8A7 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2BA9619259BBC230053C8A7 /* Nunito-Bold.ttf */; };
-		E2BA962D259BBC240053C8A7 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2BA961F259BBC230053C8A7 /* Nunito-SemiBold.ttf */; };
-		E2BA9643259BBEEB0053C8A7 /* styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA9642259BBEEB0053C8A7 /* styles.swift */; };
-		E2BA965D259CAD430053C8A7 /* emojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BA965C259CAD430053C8A7 /* emojiKeyboard.swift */; };
-		E2BA9660259CBFFD0053C8A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2BA965F259CBFFD0053C8A7 /* GoogleService-Info.plist */; };
+		E21C611F25FCD98D0084F81D /* GuessmojiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C611E25FCD98D0084F81D /* GuessmojiApp.swift */; };
+		E21C612125FCD98D0084F81D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C612025FCD98D0084F81D /* ContentView.swift */; };
+		E21C612325FCD9920084F81D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21C612225FCD9920084F81D /* Assets.xcassets */; };
+		E21C612625FCD9920084F81D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21C612525FCD9920084F81D /* Preview Assets.xcassets */; };
+		E21C613425FCDB640084F81D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C613325FCDB640084F81D /* Home.swift */; };
+		E21C613725FCDBAF0084F81D /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C613625FCDBAF0084F81D /* Styles.swift */; };
+		E21C615B25FCE10E0084F81D /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E21C615825FCE10D0084F81D /* Nunito-SemiBold.ttf */; };
+		E21C615C25FCE10E0084F81D /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E21C615925FCE10D0084F81D /* Nunito-Bold.ttf */; };
+		E21C615D25FCE10E0084F81D /* Nunito-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E21C615A25FCE10D0084F81D /* Nunito-BlackItalic.ttf */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		E2BA9656259C096B0053C8A7 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		0F215284BCD1FE6748BC059D /* Pods-Guessmoji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guessmoji.release.xcconfig"; path = "Target Support Files/Pods-Guessmoji/Pods-Guessmoji.release.xcconfig"; sourceTree = "<group>"; };
-		BBCD6D1751FAD2D9A710CF30 /* Pods-Guessmoji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guessmoji.debug.xcconfig"; path = "Target Support Files/Pods-Guessmoji/Pods-Guessmoji.debug.xcconfig"; sourceTree = "<group>"; };
-		E25670B7259B981800B39AA3 /* Guessmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guessmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E25670BA259B981800B39AA3 /* GuessmojiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessmojiApp.swift; sourceTree = "<group>"; };
-		E25670BE259B981900B39AA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E25670C1259B981900B39AA3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E25670C3259B981900B39AA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2BA9614259BAD2E0053C8A7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		E2BA9619259BBC230053C8A7 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
-		E2BA961F259BBC230053C8A7 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
-		E2BA9642259BBEEB0053C8A7 /* styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = styles.swift; sourceTree = "<group>"; };
-		E2BA965C259CAD430053C8A7 /* emojiKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emojiKeyboard.swift; sourceTree = "<group>"; };
-		E2BA965F259CBFFD0053C8A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E50283C1B0A7B4E2FEF88985 /* Pods_Guessmoji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Guessmoji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21C611B25FCD98D0084F81D /* Guessmoji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guessmoji.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21C611E25FCD98D0084F81D /* GuessmojiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessmojiApp.swift; sourceTree = "<group>"; };
+		E21C612025FCD98D0084F81D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E21C612225FCD9920084F81D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E21C612525FCD9920084F81D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E21C612725FCD9920084F81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21C613325FCDB640084F81D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E21C613625FCDBAF0084F81D /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		E21C615825FCE10D0084F81D /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		E21C615925FCE10D0084F81D /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		E21C615A25FCE10D0084F81D /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E25670B4259B981700B39AA3 /* Frameworks */ = {
+		E21C611825FCD98D0084F81D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7CF149541561D24FA6983B8 /* Pods_Guessmoji.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7A4BD6E107ADDE93EC2FE907 /* Pods */ = {
+		E21C611225FCD98D0084F81D = {
 			isa = PBXGroup;
 			children = (
-				BBCD6D1751FAD2D9A710CF30 /* Pods-Guessmoji.debug.xcconfig */,
-				0F215284BCD1FE6748BC059D /* Pods-Guessmoji.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		DDD059C1FFE9990B31A3FD34 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E50283C1B0A7B4E2FEF88985 /* Pods_Guessmoji.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E25670AE259B981700B39AA3 = {
-			isa = PBXGroup;
-			children = (
-				E25670B9259B981800B39AA3 /* Guessmoji */,
-				E25670B8259B981800B39AA3 /* Products */,
-				7A4BD6E107ADDE93EC2FE907 /* Pods */,
-				DDD059C1FFE9990B31A3FD34 /* Frameworks */,
+				E21C611D25FCD98D0084F81D /* Guessmoji */,
+				E21C611C25FCD98D0084F81D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E25670B8259B981800B39AA3 /* Products */ = {
+		E21C611C25FCD98D0084F81D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E25670B7259B981800B39AA3 /* Guessmoji.app */,
+				E21C611B25FCD98D0084F81D /* Guessmoji.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E25670B9259B981800B39AA3 /* Guessmoji */ = {
+		E21C611D25FCD98D0084F81D /* Guessmoji */ = {
 			isa = PBXGroup;
 			children = (
-				E2BA9645259BD1DE0053C8A7 /* images */,
-				E25670BA259B981800B39AA3 /* GuessmojiApp.swift */,
-				E2BA965C259CAD430053C8A7 /* emojiKeyboard.swift */,
-				E2BA9614259BAD2E0053C8A7 /* Home.swift */,
-				E2BA9642259BBEEB0053C8A7 /* styles.swift */,
-				E2BA9635259BBC310053C8A7 /* Fonts */,
-				E25670BE259B981900B39AA3 /* Assets.xcassets */,
-				E25670C3259B981900B39AA3 /* Info.plist */,
-				E2BA965F259CBFFD0053C8A7 /* GoogleService-Info.plist */,
-				E25670C0259B981900B39AA3 /* Preview Content */,
+				E21C611E25FCD98D0084F81D /* GuessmojiApp.swift */,
+				E21C612025FCD98D0084F81D /* ContentView.swift */,
+				E21C613325FCDB640084F81D /* Home.swift */,
+				E21C613625FCDBAF0084F81D /* Styles.swift */,
+				E21C612225FCD9920084F81D /* Assets.xcassets */,
+				E21C612725FCD9920084F81D /* Info.plist */,
+				E21C615725FCE10D0084F81D /* Fonts */,
+				E21C612425FCD9920084F81D /* Preview Content */,
 			);
 			path = Guessmoji;
 			sourceTree = "<group>";
 		};
-		E25670C0259B981900B39AA3 /* Preview Content */ = {
+		E21C612425FCD9920084F81D /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				E25670C1259B981900B39AA3 /* Preview Assets.xcassets */,
+				E21C612525FCD9920084F81D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E2BA9635259BBC310053C8A7 /* Fonts */ = {
+		E21C615725FCE10D0084F81D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				E2BA9619259BBC230053C8A7 /* Nunito-Bold.ttf */,
-				E2BA961F259BBC230053C8A7 /* Nunito-SemiBold.ttf */,
+				E21C615825FCE10D0084F81D /* Nunito-SemiBold.ttf */,
+				E21C615925FCE10D0084F81D /* Nunito-Bold.ttf */,
+				E21C615A25FCE10D0084F81D /* Nunito-BlackItalic.ttf */,
 			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
-		E2BA9645259BD1DE0053C8A7 /* images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = images;
+			name = Fonts;
+			path = ../../../Downloads/Guessmoji/Guessmoji/Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E25670B6259B981700B39AA3 /* Guessmoji */ = {
+		E21C611A25FCD98D0084F81D /* Guessmoji */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E25670C6259B981900B39AA3 /* Build configuration list for PBXNativeTarget "Guessmoji" */;
+			buildConfigurationList = E21C612A25FCD9920084F81D /* Build configuration list for PBXNativeTarget "Guessmoji" */;
 			buildPhases = (
-				75F461D6E06E5678C2BD19C3 /* [CP] Check Pods Manifest.lock */,
-				E25670B3259B981700B39AA3 /* Sources */,
-				E25670B4259B981700B39AA3 /* Frameworks */,
-				E25670B5259B981700B39AA3 /* Resources */,
-				E2BA9656259C096B0053C8A7 /* Embed App Extensions */,
-				2F29F02CD5382AE6F4C0002A /* [CP] Embed Pods Frameworks */,
+				E21C611725FCD98D0084F81D /* Sources */,
+				E21C611825FCD98D0084F81D /* Frameworks */,
+				E21C611925FCD98D0084F81D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -158,24 +110,24 @@
 			);
 			name = Guessmoji;
 			productName = Guessmoji;
-			productReference = E25670B7259B981800B39AA3 /* Guessmoji.app */;
+			productReference = E21C611B25FCD98D0084F81D /* Guessmoji.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E25670AF259B981700B39AA3 /* Project object */ = {
+		E21C611325FCD98D0084F81D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1230;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					E25670B6259B981700B39AA3 = {
-						CreatedOnToolsVersion = 12.3;
+					E21C611A25FCD98D0084F81D = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
-			buildConfigurationList = E25670B2259B981700B39AA3 /* Build configuration list for PBXProject "Guessmoji" */;
+			buildConfigurationList = E21C611625FCD98D0084F81D /* Build configuration list for PBXProject "Guessmoji" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,89 +135,47 @@
 				en,
 				Base,
 			);
-			mainGroup = E25670AE259B981700B39AA3;
-			productRefGroup = E25670B8259B981800B39AA3 /* Products */;
+			mainGroup = E21C611225FCD98D0084F81D;
+			productRefGroup = E21C611C25FCD98D0084F81D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E25670B6259B981700B39AA3 /* Guessmoji */,
+				E21C611A25FCD98D0084F81D /* Guessmoji */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E25670B5259B981700B39AA3 /* Resources */ = {
+		E21C611925FCD98D0084F81D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E25670C2259B981900B39AA3 /* Preview Assets.xcassets in Resources */,
-				E2BA962D259BBC240053C8A7 /* Nunito-SemiBold.ttf in Resources */,
-				E2BA9660259CBFFD0053C8A7 /* GoogleService-Info.plist in Resources */,
-				E2BA9627259BBC240053C8A7 /* Nunito-Bold.ttf in Resources */,
-				E25670BF259B981900B39AA3 /* Assets.xcassets in Resources */,
+				E21C615B25FCE10E0084F81D /* Nunito-SemiBold.ttf in Resources */,
+				E21C612625FCD9920084F81D /* Preview Assets.xcassets in Resources */,
+				E21C615C25FCE10E0084F81D /* Nunito-Bold.ttf in Resources */,
+				E21C612325FCD9920084F81D /* Assets.xcassets in Resources */,
+				E21C615D25FCE10E0084F81D /* Nunito-BlackItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		2F29F02CD5382AE6F4C0002A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Guessmoji/Pods-Guessmoji-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Guessmoji/Pods-Guessmoji-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Guessmoji/Pods-Guessmoji-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		75F461D6E06E5678C2BD19C3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Guessmoji-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		E25670B3259B981700B39AA3 /* Sources */ = {
+		E21C611725FCD98D0084F81D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2BA9643259BBEEB0053C8A7 /* styles.swift in Sources */,
-				E2BA9615259BAD2E0053C8A7 /* Home.swift in Sources */,
-				E25670BB259B981800B39AA3 /* GuessmojiApp.swift in Sources */,
-				E2BA965D259CAD430053C8A7 /* emojiKeyboard.swift in Sources */,
+				E21C612125FCD98D0084F81D /* ContentView.swift in Sources */,
+				E21C613425FCDB640084F81D /* Home.swift in Sources */,
+				E21C611F25FCD98D0084F81D /* GuessmojiApp.swift in Sources */,
+				E21C613725FCDBAF0084F81D /* Styles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E25670C4259B981900B39AA3 /* Debug */ = {
+		E21C612825FCD9920084F81D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -316,7 +226,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -326,7 +236,7 @@
 			};
 			name = Debug;
 		};
-		E25670C5259B981900B39AA3 /* Release */ = {
+		E21C612925FCD9920084F81D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -371,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -381,9 +291,8 @@
 			};
 			name = Release;
 		};
-		E25670C7259B981900B39AA3 /* Debug */ = {
+		E21C612B25FCD9920084F81D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBCD6D1751FAD2D9A710CF30 /* Pods-Guessmoji.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -397,16 +306,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aliceroncella.Guessmoji;
+				PRODUCT_BUNDLE_IDENTIFIER = aledo.Guessmoji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		E25670C8259B981900B39AA3 /* Release */ = {
+		E21C612C25FCD9920084F81D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F215284BCD1FE6748BC059D /* Pods-Guessmoji.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -420,7 +328,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aliceroncella.Guessmoji;
+				PRODUCT_BUNDLE_IDENTIFIER = aledo.Guessmoji;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,25 +338,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E25670B2259B981700B39AA3 /* Build configuration list for PBXProject "Guessmoji" */ = {
+		E21C611625FCD98D0084F81D /* Build configuration list for PBXProject "Guessmoji" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E25670C4259B981900B39AA3 /* Debug */,
-				E25670C5259B981900B39AA3 /* Release */,
+				E21C612825FCD9920084F81D /* Debug */,
+				E21C612925FCD9920084F81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E25670C6259B981900B39AA3 /* Build configuration list for PBXNativeTarget "Guessmoji" */ = {
+		E21C612A25FCD9920084F81D /* Build configuration list for PBXNativeTarget "Guessmoji" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E25670C7259B981900B39AA3 /* Debug */,
-				E25670C8259B981900B39AA3 /* Release */,
+				E21C612B25FCD9920084F81D /* Debug */,
+				E21C612C25FCD9920084F81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E25670AF259B981700B39AA3 /* Project object */;
+	rootObject = E21C611325FCD98D0084F81D /* Project object */;
 }

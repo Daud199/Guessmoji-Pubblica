@@ -1,8 +1,8 @@
 //
-//  styles.swift
+//  Styles.swift
 //  Guessmoji
 //
-//  Created by Alice Roncella on 29/12/20.
+//  Created by Alice Roncella on 13/03/21.
 //
 
 import SwiftUI
@@ -29,4 +29,3 @@ struct button: ViewModifier {
             .background(RoundedRectangle(cornerRadius: 14).fill(Color("yellow")))
     }
 }
-
