@@ -8,17 +8,33 @@
 import SwiftUI
 import Combine // !! ? wtf
 
+extension Character {
+    var isSimpleEmoji: Bool {
+        guard let firstScalar = unicodeScalars.first else { return false }
+        return firstScalar.properties.isEmoji && firstScalar.value > 0x238C
+    }
+
+    var isCombinedIntoEmoji: Bool { unicodeScalars.count > 1 && unicodeScalars.first?.properties.isEmoji ?? false }
+
+    var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
+}
+
+extension String {
+    var containsOnlyEmoji: Bool { !isEmpty && !contains { !$0.isEmoji } }
+}
 
 struct Home: View {
     @State private var username = "VolpeAzzurra"
     @State private var userEmoji = "🦊"
     @State private var userBG = "lightBlue"
+    @State private var showAlertEmoji = false
+
     
     func userIconRandom(){
         let usersBg: [[String]] = [["lightBlue", "Azzurro"], ["blue", "Blu"], ["yellow", "Giallo"], ["green", "Verde"], ["red", "Rosso"], ["pink", "Rosa"], ["purple", "Viola"], ["orange", "Arancio"]]
         let usersEmojis: [[String]] = [["🐶", "Cane"], ["🐱", "Gatto"],["🐭", "Topo"],["🐰", "Coni"], ["🦊", "Volpe"], ["🐻", "Orso"], ["🐼", "Panda"], ["🐨", "Koala"], ["🐯", "Tigre"], ["🦁", "Leone"], ["🐮", "Mucca"], ["🐷", "Porco"], ["🐸", "Rana"], ["🐔", "Pollo"], ["🦉", "Gufo"], ["🐺", "Lupo"], ["🦄", "Magia"], ["🐝", "Ape"], ["🐍", "Serpe"], ["🦖", "T-rex"], ["🦕", "Dino"], ["🦡", "Tasso"], ["🤖", "Robot"], ["🎃", "Zucca"], ["👽", "Ufo"], ["👻", "Buu"], ["🔥", "Fuoco"], ["☀️", "Sole"], ["🌝", "Luna"], ["🍄", "Fungo"], ["🌵", "Cactu"], ["🌮", "Tacos"], ["🍕", "Pizza"], ["🍔", "Pane"], ["🌭", "HDog"], ["🍟", "Chips"], ["🥝", "Kiwi"], ["🍓", "Frago"], ["🍎", "Mela"], ["🥥", "Cocco"], ["🎱", "Palla"], ["🎲", "Dado"], ["🎬", "Ciak"], ["🔮", "Sfera"], ["💊", "Pill"], ["🦠", "Virus"], ["🖋", "Penna"], ["🕹", "Stick"], ["💣", "Bomba"], ["💎", "Gemma"]]
         let emoji = usersEmojis.randomElement()
-        userEmoji = (emoji?[0])! //!! percgè o meglio che fa ? e !
+        userEmoji = (emoji?[0])! // sistema !?
         
         let color = usersBg.randomElement()
         userBG = (color?[0])!
@@ -49,10 +65,21 @@ struct Home: View {
                 })
                 Spacer()
                 TextField("", text: $userEmoji)
-                    .onReceive(Just(userEmoji)) { inputValue in
+                    .onReceive(Just(userEmoji)) {
+                        inputValue in
+                        if inputValue != "" && inputValue.containsOnlyEmoji == false {
+                            print("no emoji")
+                            userEmoji.removeLast()
+                            showAlertEmoji = true
+                            
+
+                        }
                         if inputValue.count > 1 {
                             userEmoji.removeLast()
                         }
+                    }
+                    .alert(isPresented: $showAlertEmoji) {
+                            Alert(title: Text("Inserisci solo Emoji"), message: Text("Se non le vedi vai in Impostazioni > Generali > Tastiera > Tastiere > Aggiungi nuova tastiera (Emoji)"), dismissButton: .default(Text("Chiudi")))
                     }
                     .font(.system(size: 72))
                     .multilineTextAlignment(.center)
@@ -64,10 +91,11 @@ struct Home: View {
                             .background(Circle().foregroundColor(Color(userBG)))
                     )
                     .padding(.bottom, 20)
+
                     
                 
                 TextField("", text: $username)
-                    .keyboardType(.asciiCapable) //no emoji in system keyboard
+                    .keyboardType(.asciiCapable) //no emoji in system keyboard nor change lang
                     .textContentType(.username)
                     .multilineTextAlignment(.center)
                     .modifier(box())
