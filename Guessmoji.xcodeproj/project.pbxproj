@@ -16,6 +16,9 @@
 		E21C616525FCF07E0084F81D /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E21C616225FCF07D0084F81D /* Nunito-SemiBold.ttf */; };
 		E21C616625FCF07E0084F81D /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E21C616325FCF07D0084F81D /* Nunito-Bold.ttf */; };
 		E21C616725FCF07E0084F81D /* Nunito-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E21C616425FCF07D0084F81D /* Nunito-BlackItalic.ttf */; };
+		E222CC242600C89600FFFB03 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222CC232600C89600FFFB03 /* Extensions.swift */; };
+		E222CC302600C97D00FFFB03 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222CC2F2600C97D00FFFB03 /* EditProfileView.swift */; };
+		E222CC342600DFF100FFFB03 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222CC332600DFF100FFFB03 /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		E21C616225FCF07D0084F81D /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		E21C616325FCF07D0084F81D /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		E21C616425FCF07D0084F81D /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
+		E222CC232600C89600FFFB03 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E222CC2F2600C97D00FFFB03 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; usesTabs = 0; };
+		E222CC332600DFF100FFFB03 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,9 @@
 				E21C611E25FCD98D0084F81D /* GuessmojiApp.swift */,
 				E21C612025FCD98D0084F81D /* ContentView.swift */,
 				E21C613325FCDB640084F81D /* Home.swift */,
+				E222CC2F2600C97D00FFFB03 /* EditProfileView.swift */,
+				E222CC332600DFF100FFFB03 /* Functions.swift */,
+				E222CC232600C89600FFFB03 /* Extensions.swift */,
 				E21C613625FCDBAF0084F81D /* Styles.swift */,
 				E21C612225FCD9920084F81D /* Assets.xcassets */,
 				E21C612725FCD9920084F81D /* Info.plist */,
@@ -164,7 +173,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E222CC302600C97D00FFFB03 /* EditProfileView.swift in Sources */,
+				E222CC242600C89600FFFB03 /* Extensions.swift in Sources */,
 				E21C612125FCD98D0084F81D /* ContentView.swift in Sources */,
+				E222CC342600DFF100FFFB03 /* Functions.swift in Sources */,
 				E21C613425FCDB640084F81D /* Home.swift in Sources */,
 				E21C611F25FCD98D0084F81D /* GuessmojiApp.swift in Sources */,
 				E21C613725FCDBAF0084F81D /* Styles.swift in Sources */,

@@ -12,7 +12,6 @@ struct GuessmojiApp: App {
     var body: some Scene {
         WindowGroup {
             Home()
-            
         }
     }
 }
