@@ -120,7 +120,7 @@ struct Home: View {
                     })
                     Spacer()
                 }
-            )}.onAppear(perform: userIconRandom)
+            )}//.onAppear(perform: userIconRandom)
             .navigationBarTitle("Indietro", displayMode: .large)
             .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
             .ignoresSafeArea(.keyboard)

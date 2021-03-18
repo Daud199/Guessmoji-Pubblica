@@ -15,9 +15,8 @@ struct EditProfileView: View {
     @Binding var userEmoji:String
     @Binding var userBG:String
     
-    
-    @State private var editSection = 0
     @State private var showAlertEmoji = false
+    let bgValues: [[String]] = [["red", "orange", "yellow", "green"], ["pink", "purple", "blue", "lightBlue"]]
     
     func userIconRandom(){
         let usersBg: [[String]] = [["lightBlue", "Azzurro"], ["blue", "Blu"], ["yellow", "Giallo"], ["green", "Verde"], ["red", "Rosso"], ["pink", "Rosa"], ["purple", "Viola"], ["orange", "Arancio"]]
@@ -48,6 +47,7 @@ struct EditProfileView: View {
                     HStack(alignment: .top, content: {
                         Spacer()
                         TextField("", text: $userEmoji)
+                            //.onAppear() capire come afre comparire al load
                             .onReceive(Just(userEmoji)) {
                                 inputValue in
                                 if inputValue != "" && inputValue.containsOnlyEmoji == false {
@@ -81,18 +81,23 @@ struct EditProfileView: View {
                     })
                     .padding(.leading, 55)
                     
+                    //ContentViewBtn(bgValue: "red", userBG: $userBG)
                     
-                    Picker(selection: $editSection, label: Text("Cosa vuoi muodificare?")) {
-                                    Text("Emoji").tag(0)
-                                    Text("Colore").tag(1)
+                    ForEach(self.bgValues, id: \.self) { row in
+                        HStack (alignment: .center, spacing: nil, content: {
+                            ForEach (row, id: \.self) { bgValue in
+                                Button(action: {
+                                    print(bgValue)
+                                    self.userBG = bgValue
+                                }) {
+                                    Circle()
+                                        .frame(width: 80, height: 80, alignment: .center)
+                                        .foregroundColor(Color(bgValue))
                                 }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .cornerRadius(14)
-                    .frame(width: 220, height: 35, alignment: .center)
-                    
-                    
-
-                
+                            }
+                        }).padding(.trailing, 30)
+                        .padding(.leading, 30)
+                    }
                     Spacer()
                 })
             }
