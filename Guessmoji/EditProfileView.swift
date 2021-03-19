@@ -11,23 +11,11 @@ import UIKit
 
 
 struct EditProfileView: View {
-    @Binding var username:String
-    @Binding var userEmoji:String
-    @Binding var userBG:String
+    var uMV = userModelView()
     
     @State private var showAlertEmoji = false
     let bgValues: [[String]] = [["red", "orange", "yellow", "green"], ["pink", "purple", "blue", "lightBlue"]]
-    
-    func userIconRandom(){
-        let usersBg: [[String]] = [["lightBlue", "Azzurro"], ["blue", "Blu"], ["yellow", "Giallo"], ["green", "Verde"], ["red", "Rosso"], ["pink", "Rosa"], ["purple", "Viola"], ["orange", "Arancio"]]
-        let usersEmojis: [[String]] = [["🐶", "Cane"], ["🐱", "Gatto"],["🐭", "Topo"],["🐰", "Coni"], ["🦊", "Volpe"], ["🐻", "Orso"], ["🐼", "Panda"], ["🐨", "Koala"], ["🐯", "Tigre"], ["🦁", "Leone"], ["🐮", "Mucca"], ["🐷", "Porco"], ["🐸", "Rana"], ["🐔", "Pollo"], ["🦉", "Gufo"], ["🐺", "Lupo"], ["🦄", "Magia"], ["🐝", "Ape"], ["🐍", "Serpe"], ["🦖", "T-rex"], ["🦕", "Dino"], ["🦡", "Tasso"], ["🤖", "Robot"], ["🎃", "Zucca"], ["👽", "Ufo"], ["👻", "Buu"], ["🔥", "Fuoco"], ["☀️", "Sole"], ["🌝", "Luna"], ["🍄", "Fungo"], ["🌵", "Cactu"], ["🌮", "Tacos"], ["🍕", "Pizza"], ["🍔", "Pane"], ["🌭", "HDog"], ["🍟", "Chips"], ["🥝", "Kiwi"], ["🍓", "Frago"], ["🍎", "Mela"], ["🥥", "Cocco"], ["🎱", "Palla"], ["🎲", "Dado"], ["🎬", "Ciak"], ["🔮", "Sfera"], ["💊", "Pill"], ["🦠", "Virus"], ["🖋", "Penna"], ["🕹", "Stick"], ["💣", "Bomba"], ["💎", "Gemma"]]
-        let emoji = usersEmojis.randomElement()
-        userEmoji = (emoji?[0])! // sistema !?
-        
-        let color = usersBg.randomElement()
-        userBG = (color?[0])!
-        username = (color?[1])! + (emoji?[1])!
-    }
+    @EnvironmentObject var userObservableObject: UserObservableObject
     
     var body: some View {
         NavigationView {
@@ -41,23 +29,23 @@ struct EditProfileView: View {
                               )
                     .opacity(0.03)
                         .background(Color.white)
-                }.edgesIgnoringSafeArea(.all)
+                }
                 
                 VStack(alignment: .center, spacing: nil, content: {
                     HStack(alignment: .top, content: {
                         Spacer()
-                        TextField("", text: $userEmoji)
-                            //.onAppear() capire come afre comparire al load
-                            .onReceive(Just(userEmoji)) {
+                        TextField("", text: self.$userObservableObject.userEmoji)
+//                            .onAppear{UIApplication.shared.startEditing()}
+                            .onReceive(Just(userObservableObject.userEmoji)) {
                                 inputValue in
                                 if inputValue != "" && inputValue.containsOnlyEmoji == false {
                                     print("no emoji")
-                                    userEmoji.removeLast()
+                                    userObservableObject.userEmoji.removeLast()
                                     showAlertEmoji = true
                                 }
                                 if inputValue.count > 1 {
-                                    userEmoji.removeFirst() //meglio di Apple :D non devi più cancellare un'emoji per aggiungerne un'altra, ma come selezione basta cliccarne in continuo un'altra e questa cambierà
-                                    print(userEmoji)
+                                    userObservableObject.userEmoji.removeFirst() //meglio di Apple :D non devi più cancellare un'emoji per aggiungerne un'altra, ma come selezione basta cliccarne in continuo un'altra e questa cambierà
+                                    print(userObservableObject.userEmoji)
                                 }
                             }
                             .alert(isPresented: $showAlertEmoji) {
@@ -70,13 +58,16 @@ struct EditProfileView: View {
                             .background(
                                 Circle()
                                     .stroke(Color("grayLight"), lineWidth: 6)
-                                    .background(Circle().foregroundColor(Color(userBG)))
+                                    .background(Circle().foregroundColor(Color(userObservableObject.userBG)))
                             )
                         
-                        Button(action: userIconRandom) {
+                        Button(action: {
+                            uMV.iconRandom(userObservableObject: self.userObservableObject)
+                        }, label: {
                             Text("🔄")
                                 .font(.system(size: 36))
-                        }
+                        })
+                        
                         Spacer()
                     })
                     .padding(.leading, 55)
@@ -88,7 +79,7 @@ struct EditProfileView: View {
                             ForEach (row, id: \.self) { bgValue in
                                 Button(action: {
                                     print(bgValue)
-                                    self.userBG = bgValue
+                                    userObservableObject.userBG = bgValue
                                 }) {
                                     Circle()
                                         .frame(width: 80, height: 80, alignment: .center)
@@ -102,6 +93,8 @@ struct EditProfileView: View {
                 })
             }
         }
-        
+        .onTapGesture {
+            UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+        }        
     }
 }
