@@ -8,9 +8,9 @@
 import SwiftUI
 
 class UserObservableObject: ObservableObject {
-    @Published var username = "VolpeAzzurra"
-    @Published var userEmoji = "🦊"
-    @Published var userBG = "lightBlue"
+    @Published var username:String = "VolpeAzzurra"
+    @Published var userEmoji:String = "🦊"
+    @Published var userBG:String = "lightBlue"
 }
 
 
@@ -20,7 +20,7 @@ struct GuessmojiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Home()
+            JoinGameView()
                 .environmentObject(self.userObservableObject)
                 .onAppear(perform: {
                             userModelView().iconRandom(userObservableObject: userObservableObject)

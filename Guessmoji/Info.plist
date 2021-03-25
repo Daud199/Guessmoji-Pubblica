@@ -41,6 +41,7 @@
 	<array>
 		<string>Nunito-Bold.ttf</string>
 		<string>Nunito-BlackItalic.ttf</string>
+		<string>Nunito-Black.ttf</string>
 		<string>Nunito-SemiBold.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>

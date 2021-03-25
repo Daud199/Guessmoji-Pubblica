@@ -20,14 +20,11 @@ struct EditProfileView: View {
     var body: some View {
         NavigationView {
             ZStack{
-                VStack{
-                    Image("bg").frame(minWidth: 0,
-                                      maxWidth: .infinity,
-                                      minHeight: 0,
-                                      maxHeight: .infinity,
-                                      alignment: .center
-                              )
-                    .opacity(0.03)
+                VStack(alignment: .center, spacing: nil) {
+                    Image("bg")
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all)
+                        .opacity(0.03)
                         .background(Color.white)
                 }
                 
@@ -60,6 +57,7 @@ struct EditProfileView: View {
                                     .stroke(Color("grayLight"), lineWidth: 6)
                                     .background(Circle().foregroundColor(Color(userObservableObject.userBG)))
                             )
+                           
                         
                         Button(action: {
                             uMV.iconRandom(userObservableObject: self.userObservableObject)
@@ -71,9 +69,7 @@ struct EditProfileView: View {
                         Spacer()
                     })
                     .padding(.leading, 55)
-                    
-                    //ContentViewBtn(bgValue: "red", userBG: $userBG)
-                    
+                                        
                     ForEach(self.bgValues, id: \.self) { row in
                         HStack (alignment: .center, spacing: nil, content: {
                             ForEach (row, id: \.self) { bgValue in
@@ -91,10 +87,9 @@ struct EditProfileView: View {
                     }
                     Spacer()
                 })
+            }.onTapGesture {
+                UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
             }
         }
-        .onTapGesture {
-            UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
-        }        
     }
 }

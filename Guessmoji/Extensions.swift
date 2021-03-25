@@ -27,6 +27,7 @@ extension UIApplication {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) //manda un azione al responder che gestisce cosa c'è inprimo piano e gli dice di chiudere la cosa
     }
 }
+
 //extension UIApplication {
 //    func startEditing() {
 //        sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)

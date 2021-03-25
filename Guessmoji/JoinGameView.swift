@@ -1,17 +1,18 @@
 //
-//  Home.swift
+//  JoinGameView.swift
 //  Guessmoji
 //
-//  Created by Alice Roncella on 13/03/21.
+//  Created by Alice Roncella on 25/03/21.
 //
 
 import SwiftUI
 import Combine // !! ? wtf
 
-struct Home: View {
-    @State private var showAlertTextLength = false
+struct JoinGameView: View {
     @EnvironmentObject var userObservableObject: UserObservableObject
-    
+    @State private var showAlertWrongCode = false
+    @State private var oTCodeInput:String = ""
+    var oTCode = "4024"
     
     var body: some View {
         NavigationView {
@@ -36,55 +37,48 @@ struct Home: View {
                     })
                     Spacer()
                     
-                    NavigationLink(
-                        destination: EditProfileView(),
-                        label: {
-                            TextField("", text: self.$userObservableObject.userEmoji)
-                                .font(.system(size: 72))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.black)
-                                .frame(width: 110, height: 110, alignment: .center)
-                                .background(
-                                    Circle()
-                                        .stroke(Color("grayLight"), lineWidth: 6)
-                                        .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
-                                )
-                                .padding(.bottom, 20)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/) //per non far modificare il testo all'utente                                
-                        })
+                    Text(userObservableObject.userEmoji)
+                        .font(.system(size: 72))
+                        .foregroundColor(.black)
+                        .frame(width: 110, height: 110, alignment: .center)
+                        .background(
+                            Circle()
+                                .stroke(Color("grayLight"), lineWidth: 6)
+                                .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
+                        )
+                        .padding(.bottom, 20)
 
-                    
-                    TextField("", text: self.$userObservableObject.username)
-                        .keyboardType(.asciiCapable) //no emoji in system keyboard
-                        .textContentType(.username) //no change lang
+                    Text(userObservableObject.username)
                         .multilineTextAlignment(.center)
                         .modifier(box())
                         .padding(.bottom, 100)
                         .foregroundColor(.black)
-                        .onReceive(Just(self.userObservableObject.username)) { inputValue in
-                            if inputValue.count > 12 {
-                                self.userObservableObject.username.removeLast()
-                                showAlertTextLength = true
+                    
+                    
+                    TextField("", text: $oTCodeInput)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 220, height: 85, alignment: .center)
+                        .font(Font
+                            .custom("Nunito-SemiBold", size: 8))
+                        .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayLight")))
+                        .padding(.bottom, 100)
+                        .foregroundColor(Color(userObservableObject.userBG))
+                        .onReceive(Just(oTCodeInput)) { inputValue in
+                            if inputValue.count > 4 {
+                                oTCodeInput.removeLast()
+                            }
+                            if inputValue != oTCode && inputValue.count == 4 {
+                                showAlertWrongCode = true
                             }
                         }
-                        .alert(isPresented: $showAlertTextLength) {
-                            Alert(title: Text("Max 12 caratteri"), dismissButton: .default(Text("Chiudi")))
+                        .alert(isPresented: $showAlertWrongCode) {
+                            Alert(title: Text("Codice errato"), dismissButton: .default(Text("Riprova")))
                         }
-
-                   
-                    Button(action: {
-                    }) {
-                        NavigationLink(destination: NewGameView()) {
-                            Text("Nuova partita")
-                                .modifier(button())
-                        }
-                    }
-                    .padding(.bottom, 30)
-                        
                     
                     Button(action: {
                     }) {
-                        Text("Unisciti")
+                        Text("Esci")
                             .modifier(button())
                     }
                     .padding(.bottom, 90)
@@ -116,8 +110,8 @@ struct Home: View {
     }
 }
 
-struct Home_Previews: PreviewProvider {
+struct JoinGameView_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        JoinGameView()
     }
 }
