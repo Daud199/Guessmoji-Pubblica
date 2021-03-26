@@ -126,6 +126,8 @@
 			dependencies = (
 			);
 			name = Guessmoji;
+			packageProductDependencies = (
+			);
 			productName = Guessmoji;
 			productReference = E21C611B25FCD98D0084F81D /* Guessmoji.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +155,8 @@
 				Base,
 			);
 			mainGroup = E21C611225FCD98D0084F81D;
+			packageReferences = (
+			);
 			productRefGroup = E21C611C25FCD98D0084F81D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

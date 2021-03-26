@@ -17,11 +17,7 @@ struct Home: View {
         NavigationView {
             ZStack (alignment: .center) {
                 VStack(alignment: .center, spacing: nil) {
-                    Image("bg")
-                        .resizable()
-                        .edgesIgnoringSafeArea(.all)
-                        .opacity(0.03)
-                        .background(Color.white)
+                   BGView()
                 }
                 
                 VStack(alignment: .center, content: {
@@ -41,8 +37,6 @@ struct Home: View {
                         label: {
                             TextField("", text: self.$userObservableObject.userEmoji)
                                 .font(.system(size: 72))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.black)
                                 .frame(width: 110, height: 110, alignment: .center)
                                 .background(
                                     Circle()
@@ -84,8 +78,10 @@ struct Home: View {
                     
                     Button(action: {
                     }) {
-                        Text("Unisciti")
-                            .modifier(button())
+                        NavigationLink(destination: JoinGameView()) {
+                            Text("Unisciti")
+                                .modifier(button())
+                        }
                     }
                     .padding(.bottom, 90)
                     
@@ -119,5 +115,15 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+    }
+}
+
+struct BGView: View {
+    var body: some View {
+        Image("bg")
+            .resizable()
+            .edgesIgnoringSafeArea(.all)
+            .opacity(0.03)
+            .background(Color.white)
     }
 }

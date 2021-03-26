@@ -21,11 +21,7 @@ struct EditProfileView: View {
         NavigationView {
             ZStack{
                 VStack(alignment: .center, spacing: nil) {
-                    Image("bg")
-                        .resizable()
-                        .edgesIgnoringSafeArea(.all)
-                        .opacity(0.03)
-                        .background(Color.white)
+                    BGView()
                 }
                 
                 VStack(alignment: .center, spacing: nil, content: {

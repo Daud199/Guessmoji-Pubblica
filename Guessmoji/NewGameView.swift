@@ -9,6 +9,7 @@ import SwiftUI
 import Combine // !! ? wtf
 
 struct NewGameView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var showAlertTextLength = false
     @EnvironmentObject var userObservableObject: UserObservableObject
     
@@ -17,11 +18,7 @@ struct NewGameView: View {
         NavigationView {
             ZStack (alignment: .center) {
                 VStack(alignment: .center, spacing: nil) {
-                    Image("bg")
-                        .resizable()
-                        .edgesIgnoringSafeArea(.all)
-                        .opacity(0.03)
-                        .background(Color.white)
+                    BGView()
                 }
                 
                 VStack(alignment: .center, content: {
@@ -101,6 +98,7 @@ struct NewGameView: View {
                         .padding(.bottom, -10)
                         
                         Button(action: {
+                            presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Esci")
                                 .modifier(button())

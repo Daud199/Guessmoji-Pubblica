@@ -7,8 +7,10 @@
 
 import SwiftUI
 import Combine // !! ? wtf
+import BJOTPViewController
 
 struct JoinGameView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userObservableObject: UserObservableObject
     @State private var showAlertWrongCode = false
     @State private var oTCodeInput:String = ""
@@ -18,11 +20,7 @@ struct JoinGameView: View {
         NavigationView {
             ZStack (alignment: .center) {
                 VStack(alignment: .center, spacing: nil) {
-                    Image("bg")
-                        .resizable()
-                        .edgesIgnoringSafeArea(.all)
-                        .opacity(0.03)
-                        .background(Color.white)
+                    BGView()
                 }
                 
                 VStack(alignment: .center, content: {
@@ -75,8 +73,9 @@ struct JoinGameView: View {
                         .alert(isPresented: $showAlertWrongCode) {
                             Alert(title: Text("Codice errato"), dismissButton: .default(Text("Riprova")))
                         }
-                    
+
                     Button(action: {
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Esci")
                             .modifier(button())
@@ -102,11 +101,10 @@ struct JoinGameView: View {
             )}.onTapGesture {
                 UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
                 }
-            .navigationBarTitle("indietro", displayMode: .inline)
             .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
             //.padding(.top, 30) //soluzione alla bruta
             //.ignoresSafeArea(.keyboard)
-        }
+        }.navigationBarHidden(true)
     }
 }
 

@@ -20,8 +20,9 @@ struct GuessmojiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            JoinGameView()
+            Home()
                 .environmentObject(self.userObservableObject)
+                //.environment(\.multilineTextAlignment(.center), .foregroundColor(.black))
                 .onAppear(perform: {
                             userModelView().iconRandom(userObservableObject: userObservableObject)
                 })
