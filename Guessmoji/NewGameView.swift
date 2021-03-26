@@ -38,18 +38,9 @@ struct NewGameView: View {
                             .padding(.bottom, -25)
                             .zIndex(1)
                         
-                        Text(userObservableObject.userEmoji)
-                            .font(.system(size: 50))
-                            .frame(width: 80, height: 80, alignment: .center)
-                            .background(
-                                Circle()
-                                    .stroke(Color("grayLight"), lineWidth: 6)
-                                    .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
-                            )
-                            .padding(.bottom, 10)
+                        UserPic(size: "medium")
                         
                         Text(userObservableObject.username)
-                            .multilineTextAlignment(.center)
                             .frame(width: 150, height: 25, alignment: .center)
                             .font(Font
                                     .custom("Nunito-SemiBold", size: 16))
@@ -59,7 +50,6 @@ struct NewGameView: View {
                         
                         Text("ABCD")
                             .tracking(10)
-                            .multilineTextAlignment(.center)
                             .frame(width: 220, height: 45, alignment: .center)
                             .font(Font
                                     .custom("Nunito-Bold", size: 25))
@@ -68,7 +58,6 @@ struct NewGameView: View {
                             .padding(.bottom, 1)
                         
                         Text("Invita i tuoi amici ad unirsi alla partita con questo codice!")
-                            .multilineTextAlignment(.center)
                             .frame(width: 280, height: 55, alignment: .center)
                             .font(Font
                                     .custom("Nunito-SemiBold", size: 16))
@@ -87,8 +76,8 @@ struct NewGameView: View {
                         UserBoxView()
                         UserBoxView()
                     }
-        
-
+                    
+                    
                     Group{
                         Button(action: {
                         }) {
@@ -104,20 +93,8 @@ struct NewGameView: View {
                                 .modifier(button())
                         }
                         
-                        HStack(alignment: .center, spacing: 30, content: {
-                            Button(action: {
-                            }) {
-                                Image("star").resizable().frame(width: 16, height: 16, alignment: .center)
-                            }
-                            Button(action: {
-                            }) {
-                                Image("help").resizable().frame(width: 16, height: 16, alignment: .center)
-                            }
-                            Button(action: {
-                            }) {
-                                Image("share").resizable().frame(width: 16, height: 16, alignment: .center)
-                            }
-                        })
+                        Widgets()
+                        
                     }.padding(.bottom, 30)
                 }
                 )}
@@ -138,13 +115,7 @@ struct UserBoxView: View {
     //emoji bg e username chiesti in home
     var body: some View {
         HStack(alignment: .center, spacing: 0){
-            Text(userObservableObject.userEmoji)
-                .font(.system(size: 35))
-                .frame(width: 50, height: 50, alignment: .center)
-                .background(
-                    Circle()
-                        .fill(Color(self.userObservableObject.userBG))
-                )
+            UserPic(size: "small")
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
             

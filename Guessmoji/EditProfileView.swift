@@ -28,7 +28,7 @@ struct EditProfileView: View {
                     HStack(alignment: .top, content: {
                         Spacer()
                         TextField("", text: self.$userObservableObject.userEmoji)
-//                            .onAppear{UIApplication.shared.startEditing()}
+                            //                            .onAppear{UIApplication.shared.startEditing()}
                             .onReceive(Just(userObservableObject.userEmoji)) {
                                 inputValue in
                                 if inputValue != "" && inputValue.containsOnlyEmoji == false {
@@ -42,10 +42,9 @@ struct EditProfileView: View {
                                 }
                             }
                             .alert(isPresented: $showAlertEmoji) {
-                                    Alert(title: Text("Inserisci solo Emoji"), message: Text("Se non le vedi, vai in Impostazioni > Generali > Tastiera > Tastiere > Aggiungi nuova tastiera (Emoji)"), dismissButton: .default(Text("Chiudi")))
+                                Alert(title: Text("Inserisci solo Emoji"), message: Text("Se non le vedi, vai in Impostazioni > Generali > Tastiera > Tastiere > Aggiungi nuova tastiera (Emoji)"), dismissButton: .default(Text("Chiudi")))
                             }
                             .font(.system(size: 72))
-                            .multilineTextAlignment(.center)
                             .foregroundColor(.black)
                             .frame(width: 110, height: 110, alignment: .center)
                             .background(
@@ -53,7 +52,6 @@ struct EditProfileView: View {
                                     .stroke(Color("grayLight"), lineWidth: 6)
                                     .background(Circle().foregroundColor(Color(userObservableObject.userBG)))
                             )
-                           
                         
                         Button(action: {
                             uMV.iconRandom(userObservableObject: self.userObservableObject)
@@ -63,9 +61,10 @@ struct EditProfileView: View {
                         })
                         
                         Spacer()
+                        
                     })
                     .padding(.leading, 55)
-                                        
+                    
                     ForEach(self.bgValues, id: \.self) { row in
                         HStack (alignment: .center, spacing: nil, content: {
                             ForEach (row, id: \.self) { bgValue in

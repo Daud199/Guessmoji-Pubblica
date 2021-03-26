@@ -35,19 +35,9 @@ struct JoinGameView: View {
                     })
                     Spacer()
                     
-                    Text(userObservableObject.userEmoji)
-                        .font(.system(size: 72))
-                        .foregroundColor(.black)
-                        .frame(width: 110, height: 110, alignment: .center)
-                        .background(
-                            Circle()
-                                .stroke(Color("grayLight"), lineWidth: 6)
-                                .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
-                        )
-                        .padding(.bottom, 20)
-
+                    UserPic(size: "medium")
+                    
                     Text(userObservableObject.username)
-                        .multilineTextAlignment(.center)
                         .modifier(box())
                         .padding(.bottom, 100)
                         .foregroundColor(.black)
@@ -55,10 +45,9 @@ struct JoinGameView: View {
                     
                     TextField("", text: $oTCodeInput)
                         .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
                         .frame(width: 220, height: 85, alignment: .center)
                         .font(Font
-                            .custom("Nunito-SemiBold", size: 8))
+                                .custom("Nunito-SemiBold", size: 38))
                         .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayLight")))
                         .padding(.bottom, 100)
                         .foregroundColor(Color(userObservableObject.userBG))
@@ -73,7 +62,7 @@ struct JoinGameView: View {
                         .alert(isPresented: $showAlertWrongCode) {
                             Alert(title: Text("Codice errato"), dismissButton: .default(Text("Riprova")))
                         }
-
+                    
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -82,26 +71,14 @@ struct JoinGameView: View {
                     }
                     .padding(.bottom, 90)
                     
-                    HStack(alignment: .center, spacing: 30, content: {
-                        Button(action: {
-                        }) {
-                            Image("star").resizable().frame(width: 16, height: 16, alignment: .center)
-                        }
-                        Button(action: {
-                        }) {
-                            Image("help").resizable().frame(width: 16, height: 16, alignment: .center)
-                        }
-                        Button(action: {
-                        }) {
-                            Image("share").resizable().frame(width: 16, height: 16, alignment: .center)
-                        }
-                    })
+                    Widgets()
+                    
                     Spacer()
                 }
-            )}.onTapGesture {
-                UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+                )}.onTapGesture {
+                    UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
                 }
-            .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
+                .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
             //.padding(.top, 30) //soluzione alla bruta
             //.ignoresSafeArea(.keyboard)
         }.navigationBarHidden(true)

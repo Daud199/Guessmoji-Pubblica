@@ -17,7 +17,7 @@ struct Home: View {
         NavigationView {
             ZStack (alignment: .center) {
                 VStack(alignment: .center, spacing: nil) {
-                   BGView()
+                    BGView()
                 }
                 
                 VStack(alignment: .center, content: {
@@ -35,23 +35,13 @@ struct Home: View {
                     NavigationLink(
                         destination: EditProfileView(),
                         label: {
-                            TextField("", text: self.$userObservableObject.userEmoji)
-                                .font(.system(size: 72))
-                                .frame(width: 110, height: 110, alignment: .center)
-                                .background(
-                                    Circle()
-                                        .stroke(Color("grayLight"), lineWidth: 6)
-                                        .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
-                                )
-                                .padding(.bottom, 20)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/) //per non far modificare il testo all'utente                                
+                            UserPic()
                         })
-
+                    
                     
                     TextField("", text: self.$userObservableObject.username)
                         .keyboardType(.asciiCapable) //no emoji in system keyboard
                         .textContentType(.username) //no change lang
-                        .multilineTextAlignment(.center)
                         .modifier(box())
                         .padding(.bottom, 100)
                         .foregroundColor(.black)
@@ -64,8 +54,8 @@ struct Home: View {
                         .alert(isPresented: $showAlertTextLength) {
                             Alert(title: Text("Max 12 caratteri"), dismissButton: .default(Text("Chiudi")))
                         }
-
-                   
+                    
+                    
                     Button(action: {
                     }) {
                         NavigationLink(destination: NewGameView()) {
@@ -74,7 +64,7 @@ struct Home: View {
                         }
                     }
                     .padding(.bottom, 30)
-                        
+                    
                     
                     Button(action: {
                     }) {
@@ -85,27 +75,15 @@ struct Home: View {
                     }
                     .padding(.bottom, 90)
                     
-                    HStack(alignment: .center, spacing: 30, content: {
-                        Button(action: {
-                        }) {
-                            Image("star").resizable().frame(width: 16, height: 16, alignment: .center)
-                        }
-                        Button(action: {
-                        }) {
-                            Image("help").resizable().frame(width: 16, height: 16, alignment: .center)
-                        }
-                        Button(action: {
-                        }) {
-                            Image("share").resizable().frame(width: 16, height: 16, alignment: .center)
-                        }
-                    })
+                    Widgets()
+                    
                     Spacer()
                 }
-            )}.onTapGesture {
-                UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+                )}.onTapGesture {
+                    UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
                 }
-            .navigationBarTitle("indietro", displayMode: .inline)
-            .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
+                .navigationBarTitle("indietro", displayMode: .inline)
+                .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
             //.padding(.top, 30) //soluzione alla bruta
             //.ignoresSafeArea(.keyboard)
         }
@@ -125,5 +103,64 @@ struct BGView: View {
             .edgesIgnoringSafeArea(.all)
             .opacity(0.03)
             .background(Color.white)
+    }
+}
+
+struct UserPic: View {
+    var size = "big"
+    @State var lineWidthBorder:CGFloat = 6
+    @State var fontSize:CGFloat = 72
+    @State var circleSize:CGFloat = 110
+    @State var paddingSize:CGFloat = 20
+    
+    @EnvironmentObject var userObservableObject: UserObservableObject
+    
+    
+    var body: some View {
+        VStack{
+            Text(userObservableObject.userEmoji)
+                .font(.system(size: fontSize))
+                .foregroundColor(.black)
+                .frame(width: circleSize, height: circleSize, alignment: .center)
+                .background(
+                    Circle()
+                        .stroke(Color("grayLight"), lineWidth: lineWidthBorder)
+                        .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
+                )
+                .padding(.bottom, paddingSize)
+        }
+        .onAppear(){
+            if size == "medium" {
+                lineWidthBorder = 4
+                fontSize = 50
+                circleSize = 80
+                paddingSize = 10
+            }
+            if size == "small"{
+                lineWidthBorder = 0
+                fontSize = 35
+                circleSize = 50
+                paddingSize = 0
+            }
+        }
+    }
+}
+
+struct Widgets: View {
+    var body: some View {
+        HStack(alignment: .center, spacing: 30, content: {
+            Button(action: {
+            }) {
+                Image("star").resizable().frame(width: 16, height: 16, alignment: .center)
+            }
+            Button(action: {
+            }) {
+                Image("help").resizable().frame(width: 16, height: 16, alignment: .center)
+            }
+            Button(action: {
+            }) {
+                Image("share").resizable().frame(width: 16, height: 16, alignment: .center)
+            }
+        })
     }
 }

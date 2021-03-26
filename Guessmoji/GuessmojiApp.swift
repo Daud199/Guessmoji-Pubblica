@@ -22,7 +22,8 @@ struct GuessmojiApp: App {
         WindowGroup {
             Home()
                 .environmentObject(self.userObservableObject)
-                //.environment(\.multilineTextAlignment(.center), .foregroundColor(.black))
+                .environment(\.multilineTextAlignment, .center)
+
                 .onAppear(perform: {
                             userModelView().iconRandom(userObservableObject: userObservableObject)
                 })
