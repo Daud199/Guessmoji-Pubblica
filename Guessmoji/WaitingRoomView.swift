@@ -1,24 +1,22 @@
 //
-//  NewGameView.swift
+//  WaitingRoomView.swift
 //  Guessmoji
 //
-//  Created by Alice Roncella on 25/03/21.
+//  Created by Alice Roncella on 09/04/21.
 //
 
 import SwiftUI
 import Combine // !! ? wtf
 
-class UsersJoined: ObservableObject {
-    @Published var users:[[String]] = [["Edo", "🐀", "green"], ["Ro", "🐇", "lightBlue"]]
-}
 
-struct NewGameView: View {
+struct WaitingRoomView: View {
     @StateObject var usersJoined = UsersJoined()
 
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlertTextLength = false
     @EnvironmentObject var userObservableObject: UserObservableObject
     
+    @Binding var oTCode:String
     
     var body: some View {
         NavigationView {
@@ -39,11 +37,7 @@ struct NewGameView: View {
                     })
                     
                     Group{
-                        Text("👑")
-                            .font(.system(size: 50))
-                            .padding(.bottom, -25)
-                            .zIndex(1)
-                        
+                
                         UserPic(size: "medium")
                         
                         Text(userObservableObject.username)
@@ -54,7 +48,7 @@ struct NewGameView: View {
                             .foregroundColor(.black)
                             .padding(.bottom, 15)
                         
-                        Text("ABCD")
+                        Text(oTCode)
                             .tracking(10)
                             .frame(width: 220, height: 45, alignment: .center)
                             .font(Font
@@ -63,7 +57,7 @@ struct NewGameView: View {
                             .foregroundColor(.white)
                             .padding(.bottom, 1)
                         
-                        Text("Invita i tuoi amici ad unirsi alla partita con questo codice!")
+                        Text("Aspettando che l'host inizi la partita ")
                             .frame(width: 280, height: 55, alignment: .center)
                             .font(Font
                                     .custom("Nunito-SemiBold", size: 16))
@@ -82,14 +76,6 @@ struct NewGameView: View {
                     }
                     
                     Group{
-                        Button(action: {}) {
-                            NavigationLink(destination: GameRoomView()) {
-                                Text("Ciak si gira!")
-                                    .modifier(button())
-                            }
-                        }
-                        .padding(.bottom, -10)
-                        
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
                         }) {
@@ -103,45 +89,6 @@ struct NewGameView: View {
                 }
                 )}.navigationBarHidden(true)
         }.navigationBarHidden(true)
-         // TODO: Workaround temporaneo bug SDK
     }
 }
 
-struct NewGameView_Preview: PreviewProvider {
-    static var previews: some View {
-        NewGameView()
-    }
-}
-
-struct UserBoxView: View {
-    @EnvironmentObject var userObservableObject: UserObservableObject
-    var userData:Array<String> //[0 -> "nome", 1 -> "emoji", 2 -> "colore"]]
-    
-    var body: some View {
-        HStack(alignment: .center, spacing: 0){
-            Text(userData[1])
-                .font(.system(size: 35))
-                .foregroundColor(.black)
-                .frame(width: 50, height: 50, alignment: .center)
-                .background(
-                    Circle()
-                        .stroke(Color("grayLight"), lineWidth: 0)
-                        .background(Circle().foregroundColor(Color(userData[2])))
-                )
-                .padding(.leading, 10)
-                .padding(.trailing, 10)
-        
-            Text(self.userData[0])
-                .multilineTextAlignment(.leading)
-                .frame(width: 150, height: 25, alignment: .leading)
-                .font(Font
-                        .custom("Nunito-SemiBold", size: 16))
-                .foregroundColor(.black)
-            Spacer()
-        }
-        .background(RoundedRectangle(cornerRadius: 18).fill(Color("grayLight"))                    .frame(width: 350, height: 70, alignment: .center))
-        .frame(width: 350, height: 70, alignment: .center)
-        .zIndex(1)
-        .padding(.bottom, 10)
-    }
-}

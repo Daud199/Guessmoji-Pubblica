@@ -12,7 +12,6 @@ struct Home: View {
     @State private var showAlertTextLength = false
     @EnvironmentObject var userObservableObject: UserObservableObject
     
-    
     var body: some View {
         NavigationView {
             ZStack (alignment: .center) {
@@ -66,8 +65,7 @@ struct Home: View {
                     .padding(.bottom, 30)
                     
                     
-                    Button(action: {
-                    }) {
+                    Button(action: {}) {
                         NavigationLink(destination: JoinGameView()) {
                             Text("Unisciti")
                                 .modifier(button())
@@ -124,7 +122,7 @@ struct UserPic: View {
                 .frame(width: circleSize, height: circleSize, alignment: .center)
                 .background(
                     Circle()
-                        .stroke(Color("grayLight"), lineWidth: lineWidthBorder)
+                        .stroke(Color("gray"), lineWidth: lineWidthBorder)
                         .background(Circle().foregroundColor(Color(self.userObservableObject.userBG)))
                 )
                 .padding(.bottom, paddingSize)
@@ -136,11 +134,11 @@ struct UserPic: View {
                 circleSize = 80
                 paddingSize = 10
             }
-            if size == "small"{
-                lineWidthBorder = 0
+            if size == "small" {
+                lineWidthBorder = 3
                 fontSize = 35
-                circleSize = 50
-                paddingSize = 0
+                circleSize = 60
+                paddingSize = 10
             }
         }
     }

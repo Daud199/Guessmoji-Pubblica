@@ -16,8 +16,8 @@ class UserObservableObject: ObservableObject {
 
 @main
 struct GuessmojiApp: App {
-    let userObservableObject: UserObservableObject = UserObservableObject()
-    
+    @StateObject var userObservableObject: UserObservableObject = UserObservableObject()
+
     var body: some Scene {
         WindowGroup {
             Home()

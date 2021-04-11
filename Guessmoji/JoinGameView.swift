@@ -7,18 +7,21 @@
 
 import SwiftUI
 import Combine // !! ? wtf
-import BJOTPViewController
 
 struct JoinGameView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userObservableObject: UserObservableObject
     @State private var showAlertWrongCode = false
-    @State private var oTCodeInput:String = ""
-    var oTCode = "4024"
+    @State private var oTCodeInput:String = "####"
+    @State private var canEnter = false
+    
+    @State var oTCode = "4024"
     
     var body: some View {
         NavigationView {
             ZStack (alignment: .center) {
+                NavigationLink(destination: WaitingRoomView(oTCode: self.$oTCode), isActive: $canEnter) {}
+                
                 VStack(alignment: .center, spacing: nil) {
                     BGView()
                 }
@@ -33,35 +36,79 @@ struct JoinGameView: View {
                         .padding(.leading, 10)
                         Spacer()
                     })
+                    
                     Spacer()
                     
-                    UserPic(size: "medium")
+                    Group{
+                        UserPic(size: "medium")
+                        
+                        Text(userObservableObject.username)
+                            .modifier(box())
+                            .foregroundColor(.black)
+                    }
                     
-                    Text(userObservableObject.username)
-                        .modifier(box())
-                        .padding(.bottom, 100)
-                        .foregroundColor(.black)
+                    Spacer()
+                    
+                    VStack(alignment: .center, spacing: 10, content: {
+                        Text("Inserisci Codice:")
+                            .frame(width: 280, height: 18, alignment: .center)
+                            .font(Font
+                                    .custom("Nunito-Bold", size: 18))
+                            .foregroundColor(.black)
+
+                        ZStack{
+                            Text(oTCodeInput)
+                                .tracking(10)
+                                .frame(width: 220, height: 85, alignment: .center)
+                                .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayLight")))
+                                .font(Font
+                                        .custom("Nunito-SemiBold", size: 38))
+                                .foregroundColor(Color(userObservableObject.userBG))
+
+                            TextField("", text: $oTCodeInput, onEditingChanged: {_ in
+                                if oTCodeInput == "####"
+                                {
+                                    oTCodeInput = ""
+                                }
+                            })
+                                .keyboardType(.numberPad)
+                                .frame(width: 220, height: 85, alignment: .center)
+                                .font(Font
+                                        .custom("Nunito-SemiBold", size: 38))
+                                .foregroundColor(Color.red.opacity(0))
+                                .background(Color.clear)
+
+                                .onReceive(Just(oTCodeInput)) { inputValue in
+                                    if inputValue.count > 4 {
+                                        oTCodeInput.removeLast()
+                                    }
+                                    if inputValue != oTCode && inputValue.count == 4 && inputValue != "####" {
+                                        print("errato")
+                                        showAlertWrongCode = true
+                                    }
+                                    if inputValue == oTCode {
+                                        canEnter = true
+                                    }
+                                }
+                                .alert(isPresented: $showAlertWrongCode) {
+                                    Alert(title: Text("Codice errato"), dismissButton: .default(Text("Riprova")){                                oTCodeInput = ""
+                                    })
+                                }.padding(.leading, 18)
+                                                        
+                        }
+                    })
                     
                     
-                    TextField("", text: $oTCodeInput)
-                        .keyboardType(.numberPad)
-                        .frame(width: 220, height: 85, alignment: .center)
+                    Text("Chiedi all’amico che ha creato la partita di darti il codice invito")
+                        .frame(width: 300, height: 70, alignment: .center)
                         .font(Font
-                                .custom("Nunito-SemiBold", size: 38))
-                        .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayLight")))
-                        .padding(.bottom, 100)
-                        .foregroundColor(Color(userObservableObject.userBG))
-                        .onReceive(Just(oTCodeInput)) { inputValue in
-                            if inputValue.count > 4 {
-                                oTCodeInput.removeLast()
-                            }
-                            if inputValue != oTCode && inputValue.count == 4 {
-                                showAlertWrongCode = true
-                            }
-                        }
-                        .alert(isPresented: $showAlertWrongCode) {
-                            Alert(title: Text("Codice errato"), dismissButton: .default(Text("Riprova")))
-                        }
+                            .custom("Nunito-SemiBold", size: 18))
+                        .multilineTextAlignment(.center)
+                        .padding(10)
+                        .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayDark")))
+                        .foregroundColor(.white)
+                                  
+                    Spacer()
                     
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
@@ -71,9 +118,8 @@ struct JoinGameView: View {
                     }
                     .padding(.bottom, 90)
                     
-                    Widgets()
+                    Widgets().padding(.bottom, 90)
                     
-                    Spacer()
                 }
                 )}.onTapGesture {
                     UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
