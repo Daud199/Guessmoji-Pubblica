@@ -19,6 +19,8 @@ struct box: ViewModifier {
 }
 
 struct button: ViewModifier {
+    var color: String = "yellow"
+    
     func body(content: Content) -> some View {
         content
             .frame(width: 180, height: 35, alignment: .center)
@@ -26,6 +28,6 @@ struct button: ViewModifier {
                 .custom("Nunito-SemiBold", size: 18))
             .multilineTextAlignment(.center)
             .foregroundColor(.black)
-            .background(RoundedRectangle(cornerRadius: 14).fill(Color("yellow")))
+            .background(RoundedRectangle(cornerRadius: 14).fill(Color(color)))
     }
 }

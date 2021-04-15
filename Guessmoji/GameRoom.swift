@@ -166,7 +166,10 @@ struct GameRoomView: View {
                     
                     
                 }
-                )}.navigationBarHidden(true)
+                )}.onTapGesture {
+                    UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+                }
+                .navigationBarHidden(true)
                 .onReceive(timer) { time in
                     if self.timeRemaining > 0 {
                         self.timeRemaining -= 1

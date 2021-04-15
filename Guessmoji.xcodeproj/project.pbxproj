@@ -21,7 +21,7 @@
 		E23B73D72620626B0034674E /* WaitingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23B73D62620626B0034674E /* WaitingRoomView.swift */; };
 		E28D20562623243800A66CC6 /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D20552623243800A66CC6 /* GameRoom.swift */; };
 		E29966A3260CAB2C00F78887 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29966A2260CAB2C00F78887 /* NewGameView.swift */; };
-		E29966A7260CB95500F78887 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E29966A6260CB95400F78887 /* Nunito-Black.ttf */; };
+		E2D97D482628C48B003E4618 /* guide.svg in Resources */ = {isa = PBXBuildFile; fileRef = E2D97D472628C48B003E4618 /* guide.svg */; };
 		E2F24966260CF66F0020DC92 /* JoinGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F24965260CF66F0020DC92 /* JoinGameView.swift */; };
 		E2F551F42604C99500302B80 /* userModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F551F32604C99400302B80 /* userModelView.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +43,8 @@
 		E23B73D62620626B0034674E /* WaitingRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingRoomView.swift; sourceTree = "<group>"; };
 		E28D20552623243800A66CC6 /* GameRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoom.swift; sourceTree = "<group>"; };
 		E29966A2260CAB2C00F78887 /* NewGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
-		E29966A6260CB95400F78887 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-Black.ttf"; path = "../../../../../Downloads/Nunito/Nunito-Black.ttf"; sourceTree = "<group>"; };
+		E2D97D3F26289A6B003E4618 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
+		E2D97D472628C48B003E4618 /* guide.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = guide.svg; sourceTree = "<group>"; };
 		E2F24965260CF66F0020DC92 /* JoinGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGameView.swift; sourceTree = "<group>"; };
 		E2F551F32604C99400302B80 /* userModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userModelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +90,7 @@
 				E28D20552623243800A66CC6 /* GameRoom.swift */,
 				E222CC232600C89600FFFB03 /* Extensions.swift */,
 				E21C613625FCDBAF0084F81D /* Styles.swift */,
+				E2D97D472628C48B003E4618 /* guide.svg */,
 				E21C612225FCD9920084F81D /* Assets.xcassets */,
 				E21C612725FCD9920084F81D /* Info.plist */,
 				E21C616125FCF07D0084F81D /* Fonts */,
@@ -108,7 +110,7 @@
 		E21C616125FCF07D0084F81D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				E29966A6260CB95400F78887 /* Nunito-Black.ttf */,
+				E2D97D3F26289A6B003E4618 /* Nunito-Black.ttf */,
 				E21C616225FCF07D0084F81D /* Nunito-SemiBold.ttf */,
 				E21C616325FCF07D0084F81D /* Nunito-Bold.ttf */,
 				E21C616425FCF07D0084F81D /* Nunito-BlackItalic.ttf */,
@@ -180,9 +182,9 @@
 				E21C616525FCF07E0084F81D /* Nunito-SemiBold.ttf in Resources */,
 				E21C612625FCD9920084F81D /* Preview Assets.xcassets in Resources */,
 				E21C616625FCF07E0084F81D /* Nunito-Bold.ttf in Resources */,
+				E2D97D482628C48B003E4618 /* guide.svg in Resources */,
 				E21C612325FCD9920084F81D /* Assets.xcassets in Resources */,
 				E21C616725FCF07E0084F81D /* Nunito-BlackItalic.ttf in Resources */,
-				E29966A7260CB95500F78887 /* Nunito-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
