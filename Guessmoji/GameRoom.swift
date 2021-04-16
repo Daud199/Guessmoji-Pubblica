@@ -16,25 +16,33 @@ struct GameRoomView: View {
     @StateObject var messagesSent = MessagesSent()
     @State private var showAlertTextLength = false
     @EnvironmentObject var set : Set
-
+    
+    @StateObject var usersJoined = UsersJoined()
+    @State var roundPerPlayer:Int = 1 // quanti round per player es. 2 round pp = 10 round total
+    @State var roundTotal:Int = 0 //round in tutta la partita
+    @State var roundActual:Int = 1 // round attuale
+    @State var emoji1:String = "🤔"
+    @State var emoji2:String = "🤔"
+    @State var emoji3:String = "🤔"
+    @State var emoji4:String = "🤔"
+    
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userObservableObject: UserObservableObject
     
-    @State private var timeTotal:CGFloat = 30.0
-    @State private var timeRemaining:CGFloat = 30.0
-    @State private var barPercentageSpent:CGFloat = 0.0
+    @State private var timeRoundTotal:Int = 30
+    @State private var barPercentageSpent:Int = 0
     @State private var barColor:String = "green"
     @State private var msgToSend:String = ""
     @State private var showBar:Bool = false
-
+    
     //time
     @State var isTimerRunning = false
     @State private var startTime =  Date()
     @State private var timePassed:Int = 0
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var startEmoji = "🏁"
-
+    
     
     var body: some View {
         NavigationView {
@@ -55,7 +63,7 @@ struct GameRoomView: View {
                             
                             if showBar {
                                 RoundedRectangle(cornerRadius: 14).fill(Color(barColor))
-                                    .frame(width: UIScreen.main.bounds.width - 20 - (UIScreen.main.bounds.width * self.barPercentageSpent), height: 8, alignment: .center)
+                                    .frame(width: (UIScreen.main.bounds.width - 20) * (1 - CGFloat(self.barPercentageSpent) / 100), height: 8, alignment: .center)
                                     .padding(.leading, 10)
                                     .padding(.trailing, 10)
                             }
@@ -66,13 +74,14 @@ struct GameRoomView: View {
                         
                         HStack(alignment: .top,  content: {
                             Button(action: {
+                                self.set.showSettings.toggle()
                             }) {
                                 Text("⚙️")
                                     .font(.system(size: 36))
                             }
                             .padding(.leading, 10)
                             
-                            if self.set.start {
+                            if !self.set.start {
                                 HStack(alignment: .center){
                                     Spacer()
                                     HStack(alignment: .center, spacing: 10){
@@ -80,10 +89,10 @@ struct GameRoomView: View {
                                             Text(self.startEmoji)
                                                 .font(.system(size: 35))
                                                 .foregroundColor(.black)
-                                                    .frame(width: 50, height: 50, alignment: .center)
-                                                    .background(
-                                                        RoundedRectangle(cornerRadius: 14).fill(Color.white)
-                                                    )
+                                                .frame(width: 50, height: 50, alignment: .center)
+                                                .background(
+                                                    RoundedRectangle(cornerRadius: 14).fill(Color.white)
+                                                )
                                         }
                                     }
                                     
@@ -103,38 +112,38 @@ struct GameRoomView: View {
                             else {
                                 HStack(alignment: .top){
                                     Spacer()
-
+                                    
                                     VStack(alignment: .center) {
                                         
-                                        Text("È il turno di")
-                                            .frame(width: 100, height: 30, alignment: .center)
+                                        Text("È il turno di \(self.usersJoined.users[self.roundActual - 1][0])")
+                                            .frame(width: 200, height: 30, alignment: .center)
                                             .font(Font
                                                     .custom("Nunito-SemiBold", size: 16))
                                             .foregroundColor(.black)
                                         
                                         HStack(alignment: .center, spacing: 10){
-                                            Text("😋")
+                                            Text(self.emoji1)
                                                 .font(.system(size: 35))
                                                 .foregroundColor(.black)
                                                 .frame(width: 50, height: 50, alignment: .center)
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 14).fill(Color.white)
                                                 )
-                                            Text("😋")
+                                            Text(self.emoji2)
                                                 .font(.system(size: 35))
                                                 .foregroundColor(.black)
                                                 .frame(width: 50, height: 50, alignment: .center)
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 14).fill(Color.white)
                                                 )
-                                            Text("😋")
+                                            Text(self.emoji3)
                                                 .font(.system(size: 35))
                                                 .foregroundColor(.black)
                                                 .frame(width: 50, height: 50, alignment: .center)
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 14).fill(Color.white)
                                                 )
-                                            Text("😋")
+                                            Text(self.emoji4)
                                                 .font(.system(size: 35))
                                                 .foregroundColor(.black)
                                                 .frame(width: 50, height: 50, alignment: .center)
@@ -151,11 +160,21 @@ struct GameRoomView: View {
                                             .font(.system(size: 30))
                                             .padding(.bottom, -20)
                                             .zIndex(2)
+                                            .padding(.trailing, 10)
                                         
-                                        UserPic(size: "small")
+                                        Text(self.usersJoined.users[self.roundActual - 1][1])
+                                            .font(.system(size: 35))
+                                            .foregroundColor(.black)
+                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .background(
+                                                Circle()
+                                                    .stroke(Color("gray"), lineWidth: 3)
+                                                    .background(Circle().foregroundColor(Color(self.usersJoined.users[self.roundActual - 1][2]))
+                                                    )
+                                            ).padding(.trailing, 10)
                                     }.padding(.trailing, 10)
                                 }
-
+                                
                             }
                             
                         })
@@ -183,6 +202,7 @@ struct GameRoomView: View {
                             .frame(width: UIScreen.main.bounds.width - 70, height: 40, alignment: .center)
                             .font(Font
                                     .custom("Nunito-SemiBold", size: 18))
+                            .foregroundColor(.black)
                             .multilineTextAlignment(.center)
                             .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayLight")))
                             .multilineTextAlignment(.leading)
@@ -210,72 +230,95 @@ struct GameRoomView: View {
                     
                     
                 }
-                )}
-                .onAppear{
-                    self.startTime = Date()
-                    self.startTimer()
-                    self.isTimerRunning = true
+                )
+                
+                if self.set.showSettings {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                SettingsView(leave: true)
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
                 }
-                .onTapGesture {
-                    UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+            }
+            .onAppear{
+                self.startTimer()
+                self.isTimerRunning = true
+            }
+            .onTapGesture {
+                UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+            }
+            .navigationBarHidden(true)
+            .onReceive(timer) { time in
+                if !self.set.start && self.isTimerRunning {
+                    giveTurn()
                 }
-                .navigationBarHidden(true)
-                .onReceive(timer) { time in
-                    if self.set.start && self.isTimerRunning {
-                        if self.timePassed == 0 {
-                            self.startEmoji = "🏁"
-                        }
-                        else if self.timePassed == 1 {
-                            self.startEmoji = "🔴"
-                            messagesSent.msg.append(["GameMaster", "🎲", "red", "Inizia.... *rullo di tamburi*"])
-                        }
-                        else if self.timePassed == 2 {
-                            self.startEmoji = "🟠"
-                        }
-                        else if self.timePassed == 3 {
-                            self.startEmoji = "🟡"
-                        }
-                        else if self.timePassed == 4 {
-                            self.startEmoji = "🟢"
-                            messagesSent.msg.append(["GameMaster", "🎲", "red", "Edo"])
-                        }
-                        else if self.timePassed == 5 {
-                            self.stopTimer()
-                            self.isTimerRunning = false
-                        }
-
-                        self.timePassed = Int(Date().timeIntervalSince(self.startTime))
-                        print(timePassed)
+                else {
+                    print("inside bar changing")
+                    print(self.barPercentageSpent)
+                    self.barPercentageSpent = (self.timePassed * 100) / self.timeRoundTotal
+                    if self.barPercentageSpent < 50 {
+                        barColor = "green"
+                    }
+                    else if self.barPercentageSpent < 75 {
+                        barColor = "orange"
                     }
                     else {
-                        if self.timeRemaining > 0 {
-                            self.timeRemaining -= 1
-                            self.barPercentageSpent = 1 - self.timeRemaining / self.timeTotal
-                            if self.barPercentageSpent < 0.5 {
-                                barColor = "green"
-                            }
-                            else if self.barPercentageSpent < 0.75 {
-                                barColor = "orange"
-                            }
-                            else {
-                                barColor = "red"
-                            }
-                        }
-
+                        barColor = "red"
                     }
                 }
+                self.timePassed = Int(Date().timeIntervalSince(self.startTime))
+            }
         }.navigationBarHidden(true)
         
     }
     
+    func giveTurn() {
+        if self.timePassed == 0 {
+            self.startEmoji = "🏁"
+        }
+        else if self.timePassed == 1 {
+            self.startEmoji = "🔴"
+            messagesSent.msg.append(["GameMaster", "🎲", "red", "*rullo di tamburi*"])
+        }
+        else if self.timePassed == 2 {
+            self.startEmoji = "🟠"
+        }
+        else if self.timePassed == 3 {
+            self.startEmoji = "🟡"
+        }
+        else if self.timePassed == 4 {
+            self.startEmoji = "🟢"
+            self.roundTotal = self.usersJoined.users.count * self.roundPerPlayer
+            
+            messagesSent.msg.append(["GameMaster", "🎲", "red", "È il turno di... \(self.usersJoined.users[self.roundActual - 1][0])!"])
+        }
+        else if self.timePassed == 5 {
+            self.stopTimer()
+            self.set.start = true
+            print("ended prestart: \(self.set.start)")
+            self.startTimer()
+            self.showBar = true
+        }
+    }
     func stopTimer() {
         self.timer.upstream.connect().cancel()
     }
     
     func startTimer() {
+        self.startTime = Date()
         self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        self.isTimerRunning = true
+        
     }
-
+    
 }
 
 struct GameRoomView_Preview: PreviewProvider {
@@ -302,7 +345,8 @@ struct MessageBoxView: View {
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
             
-            Text("\(self.messageData[0]):").font(Font.custom("Nunito-Bold", size: 16)) + Text(" \(self.messageData[3])").font(Font.custom("Nunito-SemiBold", size: 16)) //TODO: testo allineato a sx 
+            Text("\(self.messageData[0]):").font(Font.custom("Nunito-Bold", size: 16)).foregroundColor(.black) + Text(" \(self.messageData[3])").font(Font.custom("Nunito-SemiBold", size: 16)).foregroundColor(.black)
+            
             
             Spacer()
         }

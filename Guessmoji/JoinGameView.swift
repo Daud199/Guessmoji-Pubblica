@@ -181,9 +181,11 @@ struct HelpJoinGameView : View {
             Text("Per entrare in una partita esistente è necessario possedere il codice invito.")
                 .font(Font
                         .custom("Nunito-SemiBold", size: 18))
+                .foregroundColor(.black)
             Text("Il codice invito va richiesto all’utente che ha creato la partita.")
                 .font(Font
                         .custom("Nunito-SemiBold", size: 18))
+                .foregroundColor(.black)
                 .padding(.bottom, 40)
             
             VStack(alignment: .center, spacing: 5){
@@ -192,6 +194,7 @@ struct HelpJoinGameView : View {
                 Text("Abbandona la lobby e torna alla home")
                     .font(Font
                             .custom("Nunito-SemiBold", size: 18))
+                    .foregroundColor(.black)
             }
         }
         .frame(width: 300, height: 360)

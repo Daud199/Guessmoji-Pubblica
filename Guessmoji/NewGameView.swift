@@ -206,6 +206,7 @@ struct HelpNewGameView : View {
                 Text("Avvia la partita e comincia a giocare")
                     .font(Font
                             .custom("Nunito-SemiBold", size: 18))
+                    .foregroundColor(.black)
             }
             
             VStack(alignment: .center, spacing: 5){
@@ -214,6 +215,7 @@ struct HelpNewGameView : View {
                 Text("Abbandona la lobby e torna alla home")
                     .font(Font
                             .custom("Nunito-SemiBold", size: 18))
+                    .foregroundColor(.black)
             }
 
         }

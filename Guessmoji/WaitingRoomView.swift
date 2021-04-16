@@ -135,6 +135,7 @@ struct HelpWaitingRoomView : View {
             Text("Attendi che l’organizzatore avvii la partita")
                 .font(Font
                         .custom("Nunito-SemiBold", size: 18))
+                .foregroundColor(.black)
                 .padding(.bottom, 40)
             
             VStack(alignment: .center, spacing: 5){
@@ -143,6 +144,7 @@ struct HelpWaitingRoomView : View {
                 Text("Abbandona la lobby e torna alla home")
                     .font(Font
                             .custom("Nunito-SemiBold", size: 18))
+                    .foregroundColor(.black)
             }
         }
         .frame(width: 300, height: 250)

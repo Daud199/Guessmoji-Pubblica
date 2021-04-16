@@ -21,7 +21,9 @@ class Set: ObservableObject {
     @Published var showHelp:Bool = false
     @Published var isShareSheetShowing:Bool = false
     @Published var isHelpSheetShowing:Bool = false
-    @Published var start:Bool = true
+    @Published var start:Bool = false
+    @Published var nav:Bool = true
+
 }
 
 @main

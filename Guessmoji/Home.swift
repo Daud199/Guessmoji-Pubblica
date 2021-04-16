@@ -152,6 +152,7 @@ struct HelpHomeView : View {
                     Text("Cambia icona")
                         .font(Font
                                 .custom("Nunito-SemiBold", size: 18))
+                        .foregroundColor(.black)
                         .padding(.top, 20)
                     
                     Spacer()
@@ -159,6 +160,7 @@ struct HelpHomeView : View {
                     Text("Cambia nome")
                         .font(Font
                                 .custom("Nunito-SemiBold", size: 18))
+                        .foregroundColor(.black)
                         .padding(.bottom, 4)
                     
                 }
@@ -171,6 +173,7 @@ struct HelpHomeView : View {
                 Text("Crea una nuova partita e invita chi vuoi")
                     .font(Font
                             .custom("Nunito-SemiBold", size: 18))
+                    .foregroundColor(.black)
             }
             
             VStack(alignment: .center, spacing: 5){
@@ -179,6 +182,7 @@ struct HelpHomeView : View {
                 Text("Unisciti ad una partita esistente con il codice invito ")
                     .font(Font
                             .custom("Nunito-SemiBold", size: 18))
+                    .foregroundColor(.black)
             }
         }
         .frame(width: 300, height: 460)
@@ -209,6 +213,7 @@ struct HelpView<Content: View>: View {
             Text("AIUTO")
                 .font(Font
                         .custom("Nunito-Bold", size: 18))
+                .foregroundColor(.black)
                 .padding(.top, -10)
             
             self.content
@@ -243,6 +248,7 @@ struct SettingsView : View {
             Text("IMPOSTAZIONI")
                 .font(Font
                         .custom("Nunito-Bold", size: 18))
+                .foregroundColor(.black)
                 .padding(.top, -10)
             
             VStack(alignment: .leading, spacing: 20){
@@ -251,6 +257,7 @@ struct SettingsView : View {
                     Text("Musica")
                         .font(Font
                                 .custom("Nunito-SemiBold", size: 18))
+                        .foregroundColor(.black)
                     Toggle("", isOn: self.$set.musicOn)
                         .toggleStyle(SwitchToggleStyle(tint: Color.yellow))
                 }
@@ -259,6 +266,7 @@ struct SettingsView : View {
                     Text("Suoni")
                         .font(Font
                                 .custom("Nunito-SemiBold", size: 18))
+                        .foregroundColor(.black)
                     Toggle("", isOn: self.$set.soundOn)
                         .toggleStyle(SwitchToggleStyle(tint: Color.yellow))
                 }
@@ -267,6 +275,7 @@ struct SettingsView : View {
                     Text("Tutorial")
                         .font(Font
                                 .custom("Nunito-SemiBold", size: 18))
+                        .foregroundColor(.black)
                 }
                 HStack(alignment: .center, spacing: 20){
                     Button(action: {
@@ -297,7 +306,9 @@ struct SettingsView : View {
             }.frame(width: 200)
             
             if leave {
-                Button(action: {}) {
+                Button(action: {
+                    self.set.showSettings = false
+                }) {
                     NavigationLink(destination: Home()) {
                         Text("Abbandona")
                             .modifier(button(color: "gray"))
