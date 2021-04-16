@@ -10,12 +10,13 @@ import Combine // !! ? wtf
 
 
 struct WaitingRoomView: View {
-    @StateObject var usersJoined = UsersJoined()
-
+    @EnvironmentObject var set : Set
     @Environment(\.presentationMode) var presentationMode
-    @State private var showAlertTextLength = false
     @EnvironmentObject var userObservableObject: UserObservableObject
-    
+
+    @StateObject var usersJoined = UsersJoined()
+    @State private var showAlertTextLength = false
+
     @Binding var oTCode:String
     
     var body: some View {
@@ -28,6 +29,7 @@ struct WaitingRoomView: View {
                 VStack(alignment: .center, content: {
                     HStack(alignment: .top,  content: {
                         Button(action: {
+                            self.set.showSettings.toggle()
                         }) {
                             Text("⚙️")
                                 .font(.system(size: 36))
@@ -87,8 +89,63 @@ struct WaitingRoomView: View {
                         
                     }.padding(.bottom, 30)
                 }
-                )}.navigationBarHidden(true)
+                )
+                if self.set.showSettings {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                SettingsView(leave: false)
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
+                }
+                if self.set.showHelp {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                HelpView{
+                                    HelpWaitingRoomView()
+                                }
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
+                }
+            }.navigationBarHidden(true)
         }.navigationBarHidden(true)
+    }
+}
+
+struct HelpWaitingRoomView : View {
+    @EnvironmentObject var userObservableObject: UserObservableObject
+
+    var body: some View {
+        VStack(alignment: .center, spacing: 40){
+            Text("Attendi che l’organizzatore avvii la partita")
+                .font(Font
+                        .custom("Nunito-SemiBold", size: 18))
+                .padding(.bottom, 40)
+            
+            VStack(alignment: .center, spacing: 5){
+                Text("Esci")
+                    .modifier(button())
+                Text("Abbandona la lobby e torna alla home")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }
+        }
+        .frame(width: 300, height: 250)
     }
 }
 

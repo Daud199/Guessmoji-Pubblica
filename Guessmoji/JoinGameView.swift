@@ -9,8 +9,10 @@ import SwiftUI
 import Combine // !! ? wtf
 
 struct JoinGameView: View {
+    @EnvironmentObject var set : Set
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userObservableObject: UserObservableObject
+    
     @State private var showAlertWrongCode = false
     @State private var oTCodeInput:String = "####"
     @State private var canEnter = false
@@ -29,6 +31,7 @@ struct JoinGameView: View {
                 VStack(alignment: .center, content: {
                     HStack(alignment: .top,  content: {
                         Button(action: {
+                            self.set.showSettings.toggle()
                         }) {
                             Text("⚙️")
                                 .font(.system(size: 36))
@@ -121,7 +124,40 @@ struct JoinGameView: View {
                     Widgets().padding(.bottom, 90)
                     
                 }
-                )}.onTapGesture {
+                )
+                if self.set.showSettings {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                SettingsView(leave: false)
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
+                }
+                if self.set.showHelp {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                HelpView{
+                                    HelpJoinGameView()
+                                }
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
+                }
+            }.onTapGesture {
                     UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
                 }
                 .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
@@ -134,5 +170,30 @@ struct JoinGameView: View {
 struct JoinGameView_Previews: PreviewProvider {
     static var previews: some View {
         JoinGameView()
+    }
+}
+
+struct HelpJoinGameView : View {
+    @EnvironmentObject var userObservableObject: UserObservableObject
+
+    var body: some View {
+        VStack(alignment: .center, spacing: 40){
+            Text("Per entrare in una partita esistente è necessario possedere il codice invito.")
+                .font(Font
+                        .custom("Nunito-SemiBold", size: 18))
+            Text("Il codice invito va richiesto all’utente che ha creato la partita.")
+                .font(Font
+                        .custom("Nunito-SemiBold", size: 18))
+                .padding(.bottom, 40)
+            
+            VStack(alignment: .center, spacing: 5){
+                Text("Esci")
+                    .modifier(button())
+                Text("Abbandona la lobby e torna alla home")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }
+        }
+        .frame(width: 300, height: 360)
     }
 }

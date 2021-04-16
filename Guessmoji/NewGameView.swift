@@ -13,9 +13,10 @@ class UsersJoined: ObservableObject {
 }
 
 struct NewGameView: View {
-    @StateObject var usersJoined = UsersJoined()
-
+    @EnvironmentObject var set : Set
     @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject var usersJoined = UsersJoined()
     @State private var showAlertTextLength = false
     @EnvironmentObject var userObservableObject: UserObservableObject
     
@@ -30,6 +31,7 @@ struct NewGameView: View {
                 VStack(alignment: .center, content: {
                     HStack(alignment: .top,  content: {
                         Button(action: {
+                            self.set.showSettings.toggle()
                         }) {
                             Text("⚙️")
                                 .font(.system(size: 36))
@@ -101,7 +103,40 @@ struct NewGameView: View {
                         
                     }.padding(.bottom, 30)
                 }
-                )}.navigationBarHidden(true)
+                )
+                if self.set.showSettings {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                SettingsView(leave: false)
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
+                }
+                if self.set.showHelp {
+                    GeometryReader { _ in
+                        VStack(alignment: .center){
+                            Spacer()
+                            HStack(alignment: .center){
+                                Spacer()
+                                HelpView{
+                                    HelpNewGameView()
+                                }
+                                Spacer()
+                            }.padding(.bottom, 30)
+                            Spacer()
+                        }
+                    }.background(Color.black.opacity(0.60)
+                                    .edgesIgnoringSafeArea(.all)
+                    )
+                }
+            }.navigationBarHidden(true)
         }.navigationBarHidden(true)
          // TODO: Workaround temporaneo bug SDK
     }
@@ -143,5 +178,45 @@ struct UserBoxView: View {
         .frame(width: 350, height: 70, alignment: .center)
         .zIndex(1)
         .padding(.bottom, 10)
+    }
+}
+
+struct HelpNewGameView : View {
+    @EnvironmentObject var userObservableObject: UserObservableObject
+
+    var body: some View {
+        VStack(alignment: .center, spacing: 40){
+            VStack(alignment: .center, spacing: 5){
+                Text("ABCD")
+                    .tracking(10)
+                    .frame(width: 220, height: 45, alignment: .center)
+                    .font(Font
+                            .custom("Nunito-Bold", size: 25))
+                    .background(RoundedRectangle(cornerRadius: 18).fill(Color(userObservableObject.userBG)))
+                    .foregroundColor(.white)
+                    .padding(.bottom, 1)
+                Text("Invia questo codice invito ai tuoi amici")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }.padding(.bottom, 40)
+            
+            VStack(alignment: .center, spacing: 5){
+                Text("Ciak si gira!")
+                    .modifier(button())
+                Text("Avvia la partita e comincia a giocare")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }
+            
+            VStack(alignment: .center, spacing: 5){
+                Text("Esci")
+                    .modifier(button())
+                Text("Abbandona la lobby e torna alla home")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }
+
+        }
+        .frame(width: 300, height: 440)
     }
 }

@@ -14,7 +14,6 @@ struct Home: View {
     @EnvironmentObject var userObservableObject: UserObservableObject
     
     var body: some View {
-        ZStack (alignment: .center) {
             NavigationView {
                 ZStack (alignment: .center) {
                     VStack(alignment: .center, spacing: nil) {
@@ -81,31 +80,48 @@ struct Home: View {
                         Spacer()
                     }
                     
-                    )}.onTapGesture {
-                        UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+                    
+                    )
+                    if self.set.showSettings {
+                        GeometryReader { _ in
+                            VStack(alignment: .center){
+                                Spacer()
+                                HStack(alignment: .center){
+                                    Spacer()
+                                    SettingsView(leave: false)
+                                    Spacer()
+                                }.padding(.bottom, 30)
+                                Spacer()
+                            }
+                        }.background(Color.black.opacity(0.60)
+                                        .edgesIgnoringSafeArea(.all)
+                        )
                     }
-                    .navigationBarTitle("indietro", displayMode: .inline)
-                    .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
+                    if self.set.showHelp {
+                        GeometryReader { _ in
+                            VStack(alignment: .center){
+                                Spacer()
+                                HStack(alignment: .center){
+                                    Spacer()
+                                    HelpView{
+                                        HelpHomeView()
+                                    }
+                                    Spacer()
+                                }.padding(.bottom, 30)
+                                Spacer()
+                            }
+                        }.background(Color.black.opacity(0.60)
+                                        .edgesIgnoringSafeArea(.all)
+                        )
+                    }
+                }.onTapGesture {
+                    UIApplication.shared.endEditing() //se tappi fuori qualsisi cosa è in primo piano lo chiude, esiste solo una UIapp, shared è una prorpietà statica che sa che deve puntare alla unica istanza presente di UI
+                }
+                .navigationBarTitle("indietro", displayMode: .inline)
+                .navigationBarHidden(true) //mi fa scomparire la barra, creata riga sopra
                 //.padding(.top, 30) //soluzione alla bruta
                 //.ignoresSafeArea(.keyboard)
             }
-            if self.set.showSettings {
-                GeometryReader { _ in
-                    VStack(alignment: .center){
-                        Spacer()
-                        HStack(alignment: .center){
-                            Spacer()
-                            SettingsView()
-                            Spacer()
-                        }.padding(.bottom, 30)
-                        Spacer()
-                    }
-                }.background(Color.black.opacity(0.60)
-                                .edgesIgnoringSafeArea(.all)
-                )
-            }
-        }
-        
     }
 }
 
@@ -113,6 +129,96 @@ struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
         //SettingsView()
+    }
+}
+
+struct HelpHomeView : View {
+    var body: some View {
+        VStack(alignment: .center, spacing: 40){
+            HStack(alignment: .center, spacing: 20){
+                VStack(alignment: .center, spacing: 20){
+                    UserPic(size: "small")
+                    Text("VolpeAzzurra")
+                        .frame(width: 150, height: 30, alignment: .center)
+                        .font(Font
+                                .custom("Nunito-SemiBold", size: 12))
+                        .multilineTextAlignment(.center)
+                        .background(RoundedRectangle(cornerRadius: 14).fill(Color("grayLight")))
+                        .foregroundColor(.black)
+                    
+                }
+                
+                VStack(alignment: .center){
+                    Text("Cambia icona")
+                        .font(Font
+                                .custom("Nunito-SemiBold", size: 18))
+                        .padding(.top, 20)
+                    
+                    Spacer()
+                    
+                    Text("Cambia nome")
+                        .font(Font
+                                .custom("Nunito-SemiBold", size: 18))
+                        .padding(.bottom, 4)
+                    
+                }
+            }.frame(height: 120)
+            .padding(.bottom, 40)
+            
+            VStack(alignment: .center, spacing: 5){
+                Text("Nuova partita")
+                    .modifier(button())
+                Text("Crea una nuova partita e invita chi vuoi")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }
+            
+            VStack(alignment: .center, spacing: 5){
+                Text("Unisciti")
+                    .modifier(button())
+                Text("Unisciti ad una partita esistente con il codice invito ")
+                    .font(Font
+                            .custom("Nunito-SemiBold", size: 18))
+            }
+        }
+        .frame(width: 300, height: 460)
+    }
+}
+
+struct HelpView<Content: View>: View {
+    @EnvironmentObject var set : Set
+    var content:Content
+    @State var helpHeight:CGFloat = 0
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 20){
+            
+            HStack(alignment: .center, spacing: 10){
+                Spacer()
+                Button(action: {
+                    self.set.showHelp.toggle()
+                }) {
+                    Image("close").resizable().frame(width: 20, height: 20, alignment: .center)
+                }
+            }.padding(.top, 10)
+            
+            Text("AIUTO")
+                .font(Font
+                        .custom("Nunito-Bold", size: 18))
+                .padding(.top, -10)
+            
+            self.content
+            
+        }
+        .frame(width: 330)
+        .aspectRatio(contentMode: .fit)
+        .padding()
+        .background(Color.white)
+        .cornerRadius(16)
     }
 }
 
@@ -136,7 +242,7 @@ struct SettingsView : View {
             
             Text("IMPOSTAZIONI")
                 .font(Font
-                        .custom("Nunito-SemiBold", size: 18))
+                        .custom("Nunito-Bold", size: 18))
                 .padding(.top, -10)
             
             VStack(alignment: .leading, spacing: 20){
@@ -165,7 +271,8 @@ struct SettingsView : View {
                 HStack(alignment: .center, spacing: 20){
                     Button(action: {
                             shareBtn()                    }) {
-                        Image("share").resizable().frame(width: 22, height: 22, alignment: .center).padding(.trailing, 10)
+                        Image("share").resizable().frame(width: 22, height: 22, alignment: .center)
+                            .padding(.trailing, 10)
                         Text("Condividi")
                             .foregroundColor(.black)
                             .font(Font
@@ -176,10 +283,16 @@ struct SettingsView : View {
                     
                 }
                 HStack(alignment: .center, spacing: 20){
-                    Image("star").resizable().frame(width: 22, height: 22, alignment: .center)
-                    Text("Valuta")
-                        .font(Font
-                                .custom("Nunito-SemiBold", size: 18))
+                    Button(action: {
+                        reviewBtn()
+                    }) {
+                        Image("star").resizable().frame(width: 22, height: 22, alignment: .center)
+                            .padding(.trailing, 10)
+                        Text("Valuta")
+                            .foregroundColor(.black)
+                            .font(Font
+                                    .custom("Nunito-SemiBold", size: 18))
+                    }
                 }
             }.frame(width: 200)
             
@@ -256,13 +369,17 @@ struct UserPic: View {
 }
 
 struct Widgets: View {
+    @EnvironmentObject var set : Set
+    
     var body: some View {
         HStack(alignment: .center, spacing: 30, content: {
             Button(action: {
+                reviewBtn()
             }) {
                 Image("star").resizable().frame(width: 16, height: 16, alignment: .center)
             }
             Button(action: {
+                self.set.showHelp.toggle()
             }) {
                 Image("help").resizable().frame(width: 16, height: 16, alignment: .center)
             }
@@ -275,6 +392,13 @@ struct Widgets: View {
     }
     
     
+}
+
+func reviewBtn(){
+    let appleID = "284708449"
+    let url = "https://itunes.apple.com/app/id\(appleID)?action=write-review"
+    
+    UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil)
 }
 
 func shareBtn(){

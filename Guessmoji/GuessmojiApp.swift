@@ -18,7 +18,10 @@ class Set: ObservableObject {
     @Published var musicOn:Bool = true
     @Published var soundOn:Bool = true
     @Published var showSettings:Bool = false
+    @Published var showHelp:Bool = false
     @Published var isShareSheetShowing:Bool = false
+    @Published var isHelpSheetShowing:Bool = false
+    @Published var start:Bool = true
 }
 
 @main
